@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crazy Blocks: No Mercy | Play Free</title>
+  <meta name="description" content="Play Crazy Blocks: No Mercy free in your browser. Fast falling blocks, arcade sounds, Bella, Bear, and absolutely no mercy.">
+  <meta name="theme-color" content="#050810">
+  <meta property="og:title" content="Crazy Blocks: No Mercy">
+  <meta property="og:description" content="A fast, weird, loud falling-block arcade game. Play free in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://crazyblocks.win/">
+  <meta property="og:image" content="https://crazyblocks.win/bella-bear-11000.png">
+
+  <!-- GOOGLE ANALYTICS WILL BE ADDED HERE LATER -->
+
+  <style>
+    :root {
+      --bg: #04060b;
+      --panel: #080d16;
+      --panel2: #0b1220;
+      --text: #f4f8ff;
+      --muted: #9cb0c9;
+      --blue: #29a9ff;
+      --cyan: #43f0ff;
+      --purple: #a266ff;
+      --pink: #ff4fa3;
+      --green: #56f39a;
+      --line: rgba(67, 240, 255, .22);
+      --shadow: 0 0 18px rgba(41, 169, 255, .22), inset 0 0 22px rgba(41, 169, 255, .05);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(41,169,255,.12), transparent 32rem),
+        radial-gradient(circle at 82% 10%, rgba(162,102,255,.10), transparent 28rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    a { color: inherit; }
+    .wrap { width: min(1500px, calc(100% - 28px)); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(4,6,11,.82);
+      border-bottom: 1px solid rgba(67,240,255,.16);
+      backdrop-filter: blur(13px);
+    }
+
+    nav {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: .04em;
+    }
+
+    .brand-badge {
+      width: 35px;
+      height: 35px;
+      border: 1px solid var(--cyan);
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 14px rgba(67,240,255,.35);
+      color: var(--cyan);
+      font-size: 19px;
+    }
+
+    .navlinks { display: flex; gap: 20px; align-items: center; }
+    .navlinks a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 750;
+    }
+    .navlinks a:hover { color: white; }
+
+    .hero {
+      text-align: center;
+      padding: 48px 0 24px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+    }
+
+    h1 {
+      margin: 8px auto 5px;
+      font-size: clamp(42px, 7vw, 88px);
+      line-height: .94;
+      letter-spacing: -.055em;
+      text-shadow: 0 0 22px rgba(41,169,255,.22);
+    }
+
+    .blocks span:nth-child(1) { color: #40c9ff; }
+    .blocks span:nth-child(2) { color: #8c7bff; }
+    .blocks span:nth-child(3) { color: #ff5ba7; }
+    .blocks span:nth-child(4) { color: #ffd056; }
+    .blocks span:nth-child(5) { color: #54ee91; }
+    .blocks span:nth-child(6) { color: #46e6ef; }
+
+    .subtitle {
+      display: block;
+      margin-top: 8px;
+      color: #fff;
+      font-size: clamp(25px, 3vw, 43px);
+      letter-spacing: .03em;
+    }
+
+    .hero p {
+      width: min(760px, 100%);
+      margin: 18px auto 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid rgba(67,240,255,.52);
+      border-radius: 12px;
+      padding: 12px 17px;
+      background: linear-gradient(180deg, rgba(32,169,255,.18), rgba(32,169,255,.08));
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 850;
+      font-size: 14px;
+      box-shadow: 0 0 16px rgba(41,169,255,.16);
+    }
+
+    .btn:hover { transform: translateY(-1px); border-color: var(--cyan); }
+    .btn.secondary { border-color: rgba(162,102,255,.45); background: rgba(162,102,255,.08); }
+
+
+    .hero-art {
+      width: min(1180px, 100%);
+      margin: 30px auto 8px;
+      position: relative;
+      border: 1px solid rgba(67,240,255,.42);
+      border-radius: 22px;
+      overflow: hidden;
+      background: #02040a;
+      box-shadow: 0 0 34px rgba(41,169,255,.24), inset 0 0 24px rgba(41,169,255,.05);
+    }
+
+    .hero-art img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 42px rgba(0,0,0,.35);
+    }
+
+    .hero-art-caption {
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      z-index: 2;
+      padding: 9px 12px;
+      border-radius: 10px;
+      background: rgba(2,4,10,.76);
+      border: 1px solid rgba(67,240,255,.35);
+      color: #eaf8ff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      backdrop-filter: blur(7px);
+    }
+
+    .game-shell {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid rgba(67,240,255,.38);
+      border-radius: 20px;
+      background: #02040a;
+      box-shadow: 0 0 34px rgba(41,169,255,.18), inset 0 0 22px rgba(41,169,255,.04);
+    }
+
+    .game-toolbar {
+      min-height: 43px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 2px 5px 9px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .game-toolbar strong { color: white; }
+
+    iframe {
+      width: 100%;
+      height: min(850px, 84vh);
+      min-height: 650px;
+      display: block;
+      border: 0;
+      border-radius: 13px;
+      background: #000;
+    }
+
+    section { padding: 74px 0 10px; }
+    .section-title { margin: 0 0 9px; font-size: clamp(28px, 4vw, 46px); letter-spacing: -.035em; }
+    .section-lead { color: var(--muted); margin: 0 0 25px; line-height: 1.65; }
+
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(11,18,32,.95), rgba(7,11,20,.95));
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 { margin: 0 0 7px; font-size: 17px; }
+    .card p { color: var(--muted); line-height: 1.55; margin: 0; }
+
+    .key {
+      display: inline-grid;
+      min-width: 30px;
+      height: 28px;
+      padding: 0 7px;
+      place-items: center;
+      border-radius: 7px;
+      background: #0e1828;
+      border: 1px solid rgba(67,240,255,.28);
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+      margin: 3px 2px;
+      box-shadow: inset 0 -2px 0 rgba(255,255,255,.05);
+    }
+
+    .comment-layout {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    form { display: grid; gap: 13px; }
+    label { font-size: 13px; color: #c8d8e9; font-weight: 800; }
+    input, textarea {
+      width: 100%;
+      margin-top: 6px;
+      border-radius: 10px;
+      border: 1px solid rgba(67,240,255,.22);
+      background: #050a12;
+      color: white;
+      padding: 12px 13px;
+      font: inherit;
+      outline: none;
+    }
+    input:focus, textarea:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(67,240,255,.08); }
+    textarea { min-height: 150px; resize: vertical; }
+
+    .submit {
+      border: 1px solid rgba(86,243,154,.45);
+      background: linear-gradient(180deg, rgba(86,243,154,.18), rgba(86,243,154,.08));
+      color: white;
+      border-radius: 11px;
+      padding: 13px 17px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .submit:hover { border-color: var(--green); }
+
+    .fine { font-size: 12px; line-height: 1.5; color: #7f94ad; }
+    .success {
+      display: none;
+      margin-bottom: 16px;
+      padding: 12px 14px;
+      border: 1px solid rgba(86,243,154,.35);
+      background: rgba(86,243,154,.08);
+      border-radius: 11px;
+      color: #bcffd8;
+    }
+
+    footer {
+      margin-top: 70px;
+      padding: 27px 0 38px;
+      border-top: 1px solid rgba(67,240,255,.12);
+      color: #7589a0;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 850px) {
+      .navlinks { display: none; }
+      .grid3, .comment-layout { grid-template-columns: 1fr; }
+      iframe { height: 740px; min-height: 610px; }
+      .hero { padding-top: 34px; }
+    }
+
+    @media (max-width: 540px) {
+      .wrap { width: min(100% - 16px, 1500px); }
+  
+    .hero-art {
+      width: min(1180px, 100%);
+      margin: 30px auto 8px;
+      position: relative;
+      border: 1px solid rgba(67,240,255,.42);
+      border-radius: 22px;
+      overflow: hidden;
+      background: #02040a;
+      box-shadow: 0 0 34px rgba(41,169,255,.24), inset 0 0 24px rgba(41,169,255,.05);
+    }
+
+    .hero-art img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 42px rgba(0,0,0,.35);
+    }
+
+    .hero-art-caption {
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      z-index: 2;
+      padding: 9px 12px;
+      border-radius: 10px;
+      background: rgba(2,4,10,.76);
+      border: 1px solid rgba(67,240,255,.35);
+      color: #eaf8ff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      backdrop-filter: blur(7px);
+    }
+
+    .game-shell { padding: 6px; border-radius: 13px; }
+      iframe { min-height: 690px; height: 76vh; }
+      .game-toolbar { padding-inline: 4px; }
+      .desktop-tip { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="#top" aria-label="Crazy Blocks home">
+          <span class="brand-badge">▦</span>
+          <span>CRAZY BLOCKS</span>
+        </a>
+        <div class="navlinks">
+          <a href="#play">Play</a>
+          <a href="#how">Controls</a>
+          <a href="#comments">Comments</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap">
+      <div class="hero">
+        <div class="hero-art">
+          <img src="bella-bear-11000.png" alt="Bella pointing at the player with one eye closed beside Bear the yellow lab, with the Crazy Blocks 11,000-point scoreboard in the background">
+          <div class="hero-art-caption">Bella &amp; Bear · Things get interesting at 11,000.</div>
+        </div>
+        <div class="eyebrow">Free browser arcade game</div>
+        <h1>
+          CRAZY <span class="blocks"><span>B</span><span>L</span><span>O</span><span>C</span><span>K</span><span>S</span></span>
+          <span class="subtitle">NO MERCY</span>
+        </h1>
+        <p>Falling blocks were apparently not dramatic enough, so Bella showed up, Bear came along, the scoreboard got loud, and things got weird. Play right here—no download needed.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#play">PLAY NOW</a>
+          <a class="btn secondary" href="#comments">LEAVE A COMMENT</a>
+        </div>
+      </div>
+
+      <section id="play" style="padding-top:20px">
+        <div class="game-shell">
+          <div class="game-toolbar">
+            <span><strong>Crazy Blocks: No Mercy</strong> — running directly on this page</span>
+            <button class="btn desktop-tip" id="fullscreenBtn" type="button">FULL SCREEN GAME</button>
+          </div>
+          <iframe id="gameFrame" src="crazyblocks.html" title="Crazy Blocks: No Mercy game" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+      </section>
+
+      <section id="how">
+        <h2 class="section-title">How to play</h2>
+        <p class="section-lead">Simple controls. The game itself is not obligated to be simple.</p>
+        <div class="grid3">
+          <div class="card">
+            <h3>Move & rotate</h3>
+            <p><span class="key">←</span><span class="key">→</span> move the block. <span class="key">↑</span> rotates it. WASD works too.</p>
+          </div>
+          <div class="card">
+            <h3>Drop it</h3>
+            <p><span class="key">↓</span> moves down faster. <span class="key">SPACE</span> hard-drops the piece and adds drop points.</p>
+          </div>
+          <div class="card">
+            <h3>Pause / start</h3>
+            <p><span class="key">P</span> pauses. <span class="key">ENTER</span> starts or resumes. Sound and music controls are in the dashboard.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="comments">
+        <h2 class="section-title">Comments from the brave</h2>
+        <p class="section-lead">Played it? Broke it? Got yelled at by Bella? Send a comment. It goes straight to the Crazy Blocks inbox.</p>
+
+        <div id="sentMessage" class="success">Comment sent. Thank you for taking the time to play Crazy Blocks.</div>
+
+        <div class="comment-layout">
+          <div class="card">
+            <h3>What I’d love to hear</h3>
+            <p>Tell me what was fun, annoying, confusing, too easy, too hard, or completely ridiculous. High scores are welcome too. Comments are sent privately by email and are not posted publicly on this page.</p>
+          </div>
+
+          <div class="card">
+            <form action="https://formsubmit.co/wallyjcass@gmail.com" method="POST">
+              <input type="hidden" name="_subject" value="New CrazyBlocks.win player comment">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_next" value="https://crazyblocks.win/?comment=sent#comments">
+              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+              <label>
+                Name or nickname
+                <input type="text" name="name" maxlength="70" placeholder="Player name" required>
+              </label>
+
+              <label>
+                Email <span style="font-weight:500;color:#7f94ad">(optional — only if you want a reply)</span>
+                <input type="email" name="email" maxlength="120" placeholder="you@example.com">
+              </label>
+
+              <label>
+                High score <span style="font-weight:500;color:#7f94ad">(optional, bragging permitted)</span>
+                <input type="text" name="high_score" maxlength="20" inputmode="numeric" placeholder="Example: 12,450">
+              </label>
+
+              <label>
+                Comment
+                <textarea name="comment" maxlength="3000" placeholder="Tell me what you thought..." required></textarea>
+              </label>
+
+              <button class="submit" type="submit">SEND COMMENT</button>
+              <div class="fine">The form uses FormSubmit to forward your message by email. The first test submission requires a one-time activation confirmation by the site owner.</div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> Crazy Blocks: No Mercy · crazyblocks.win</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const frame = document.getElementById('gameFrame');
+    document.getElementById('fullscreenBtn').addEventListener('click', () => {
+      if (frame.requestFullscreen) frame.requestFullscreen();
+      else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen();
+    });
+
+    const params = new URLSearchParams(location.search);
+    if (params.get('comment') === 'sent') {
+      document.getElementById('sentMessage').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

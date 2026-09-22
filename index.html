@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=1">
   <title>Crazy Blocks: No Mercy | Play Free</title>
   <meta name="description" content="Play Crazy Blocks: No Mercy free in your browser. Fast falling blocks, arcade sounds, Bella, Bear, and absolutely no mercy.">
   <meta name="theme-color" content="#050810">
@@ -96,7 +95,7 @@
 
     .hero {
       text-align: center;
-      padding: 48px 0 24px;
+      padding: 22px 0 24px;
     }
 
     .eyebrow {
@@ -166,7 +165,7 @@
 
     .hero-art {
       width: min(1180px, 100%);
-      margin: 30px auto 8px;
+      margin: 14px auto 8px;
       position: relative;
       border: 1px solid rgba(67,240,255,.42);
       border-radius: 22px;
@@ -319,8 +318,59 @@
       color: #bcffd8;
     }
 
+    .support-section {
+      width: min(760px, 100%);
+      margin: 72px auto 0;
+      padding: 28px 22px;
+      text-align: center;
+      border: 1px solid rgba(67,240,255,.28);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(11,18,32,.92), rgba(5,9,16,.96));
+      box-shadow: 0 0 28px rgba(41,169,255,.14), inset 0 0 22px rgba(41,169,255,.04);
+    }
+
+    .support-section h3 {
+      margin: 0 0 9px;
+      font-size: 21px;
+      letter-spacing: .02em;
+    }
+
+    .support-section p {
+      margin: 0 auto 16px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .support-button {
+      display: inline-block;
+      padding: 13px 21px;
+      border: 1px solid rgba(255,209,92,.62);
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255,209,92,.20), rgba(255,160,60,.10));
+      color: #fff;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: .02em;
+      box-shadow: 0 0 18px rgba(255,190,70,.16);
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+    }
+
+    .support-button:hover {
+      transform: translateY(-1px);
+      border-color: #ffd15c;
+      box-shadow: 0 0 22px rgba(255,190,70,.28);
+    }
+
+    .support-note {
+      margin-top: 13px !important;
+      margin-bottom: 0 !important;
+      font-size: 12px;
+      color: #7f94ad !important;
+    }
+
     footer {
-      margin-top: 70px;
+      margin-top: 42px;
       padding: 27px 0 38px;
       border-top: 1px solid rgba(67,240,255,.12);
       color: #7589a0;
@@ -332,7 +382,7 @@
       .navlinks { display: none; }
       .grid3, .comment-layout { grid-template-columns: 1fr; }
       iframe { height: 740px; min-height: 610px; }
-      .hero { padding-top: 34px; }
+      .hero { padding-top: 18px; }
     }
 
     @media (max-width: 540px) {
@@ -340,7 +390,7 @@
   
     .hero-art {
       width: min(1180px, 100%);
-      margin: 30px auto 8px;
+      margin: 14px auto 8px;
       position: relative;
       border: 1px solid rgba(67,240,255,.42);
       border-radius: 22px;
@@ -498,6 +548,13 @@
       </section>
     </div>
   </main>
+
+  <section class="support-section" aria-labelledby="supportTitle">
+    <h3 id="supportTitle">❤️ ENJOYING CRAZY BLOCKS?</h3>
+    <p>If you would like to help keep Crazy Blocks growing with new features and surprises, your support is always appreciated.</p>
+    <a class="support-button" href="https://www.paypal.com/donate/?hosted_button_id=SJB48Y5YLJESA" target="_blank" rel="noopener noreferrer">❤️ SUPPORT CRAZY BLOCKS</a>
+    <p class="support-note">Support is completely optional. Crazy Blocks remains free to play.</p>
+  </section>
 
   <footer>
     <div class="wrap">© <span id="year"></span> Crazy Blocks: No Mercy · crazyblocks.win</div>
